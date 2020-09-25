@@ -4,7 +4,7 @@ import com.alyn.sample.app.data.DataStore;
 import com.alyn.sample.app.data.ProductReference;
 import com.alyn.sample.app.data.Transaction;
 import com.alyn.sample.app.pojo.Summary;
-import com.alyn.sample.app.pojo.SummaryByProductsResponse;
+import com.alyn.sample.app.pojo.SummaryResponse;
 import com.alyn.sample.app.pojo.TransactionResponse;
 import org.springframework.stereotype.Component;
 
@@ -44,10 +44,10 @@ public class TransactionService {
         return response;
     }
 
-    public SummaryByProductsResponse getTransactionSummaryByProducts(int lastNdays) {
+    public SummaryResponse getTransactionSummaryByProducts(int lastNdays) {
 
         LocalDateTime minDate = LocalDateTime.now().minusDays(lastNdays);
-        SummaryByProductsResponse response = new SummaryByProductsResponse();
+        SummaryResponse response = new SummaryResponse();
         List<Transaction> transactions = dataStore.getTransactions();
 
          List<Transaction> transactionFromDate = transactions.stream()
@@ -72,10 +72,10 @@ public class TransactionService {
         return response;
     }
 
-    public SummaryByProductsResponse transactionSummaryByManufacturingCity(int lastNdays) {
+    public SummaryResponse transactionSummaryByManufacturingCity(int lastNdays) {
 
         LocalDateTime minDate = LocalDateTime.now().minusDays(lastNdays);
-        SummaryByProductsResponse response = new SummaryByProductsResponse();
+        SummaryResponse response = new SummaryResponse();
         List<Transaction> transactions = dataStore.getTransactions();
 
         List<Transaction> transactionFromDate = transactions.stream()

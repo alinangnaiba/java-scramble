@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class SummaryByProductsResponse {
+public class SummaryResponse {
     List<Summary> summary;
 
     @JsonProperty("summary")

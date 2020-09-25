@@ -1,6 +1,6 @@
 package com.alyn.sample.app.controller;
 
-import com.alyn.sample.app.pojo.SummaryByProductsResponse;
+import com.alyn.sample.app.pojo.SummaryResponse;
 import com.alyn.sample.app.pojo.TransactionResponse;
 import com.alyn.sample.app.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +31,8 @@ public class AssignmentController {
     }
 
     @RequestMapping("/assignment/transactionSummaryByProducts/{lastNDays}")
-    public ResponseEntity<SummaryByProductsResponse> transactionSummaryByProducts(@PathVariable int lastNDays) {
-        SummaryByProductsResponse response = service.getTransactionSummaryByProducts(lastNDays);
+    public ResponseEntity<SummaryResponse> transactionSummaryByProducts(@PathVariable int lastNDays) {
+        SummaryResponse response = service.getTransactionSummaryByProducts(lastNDays);
         if (response.getSummary() == null){
             return ResponseEntity.unprocessableEntity().body(response);
         }
@@ -40,8 +40,8 @@ public class AssignmentController {
     }
 
     @RequestMapping("/assignment/transactionSummaryByManufacturingCity/{lastNDays}")
-    public ResponseEntity<SummaryByProductsResponse> transactionSummaryByManufacturingCity(@PathVariable int lastNDays) {
-        SummaryByProductsResponse response = service.transactionSummaryByManufacturingCity(lastNDays);
+    public ResponseEntity<SummaryResponse> transactionSummaryByManufacturingCity(@PathVariable int lastNDays) {
+        SummaryResponse response = service.transactionSummaryByManufacturingCity(lastNDays);
         if (response.getSummary() == null){
             return ResponseEntity.unprocessableEntity().body(response);
         }
