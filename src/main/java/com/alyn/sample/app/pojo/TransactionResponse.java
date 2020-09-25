@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 @JsonPropertyOrder({"transactionId","productName", "transactionAmount", "transactionDatetime" })
 public class TransactionResponse {
 
+    private final String FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
     private String productName;
     private int transactionId;
     private BigDecimal transactionAmount;
@@ -45,7 +47,7 @@ public class TransactionResponse {
         return this.transactionDatetime;
     }
     public void setTransactionDatetime(LocalDateTime transactionDatetime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_PATTERN);
         this.transactionDatetime = transactionDatetime.format(formatter);
     }
 }

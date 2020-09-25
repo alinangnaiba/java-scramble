@@ -10,6 +10,8 @@ import java.util.List;
 
 public class CsvHandler {
 
+    private final String TRANSACTION_ID = "transactionId";
+    private final String PRODUCT_ID = "productId";
     private String path;
     public CsvHandler(String path) {
         this.path = path;
@@ -43,7 +45,7 @@ public class CsvHandler {
     }
 
     private boolean isHeader(String[] line) {
-        if (line[0].equals("transactionId") || line[0].equals("productId")) {
+        if (line[0].equals(TRANSACTION_ID) || line[0].equals(PRODUCT_ID)) {
             return true;
         }
         return false;

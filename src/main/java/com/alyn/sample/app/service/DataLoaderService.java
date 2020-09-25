@@ -22,6 +22,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DataLoaderService {
+
+    private final String FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
+
     private AppConfig config;
     private DataStore dataStore;
 
@@ -87,7 +90,7 @@ public class DataLoaderService {
             int productId = Integer.parseInt(row[1]);
             transaction.setProductId(productId);
             transaction.setTransactionAmount(new BigDecimal(row[2]).setScale(1, RoundingMode.CEILING));
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            DateTimeFormatter format = DateTimeFormatter.ofPattern(FORMAT_PATTERN);
             transaction.setTransactionDatetime(LocalDateTime.parse(row[3], format));
             Optional<ProductReference> ref = productReference.stream()
                     .filter(p -> p.getProductId() == productId).findFirst();
