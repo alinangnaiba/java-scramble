@@ -8,6 +8,7 @@ import com.alyn.sample.app.data.Transaction;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -85,7 +86,7 @@ public class DataLoaderService {
             transaction.setTransactionId(Integer.parseInt(row[0]));
             int productId = Integer.parseInt(row[1]);
             transaction.setProductId(productId);
-            transaction.setTransactionAmount(new BigDecimal(row[2]));
+            transaction.setTransactionAmount(new BigDecimal(row[2]).setScale(1, RoundingMode.CEILING));
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             transaction.setTransactionDatetime(LocalDateTime.parse(row[3], format));
             Optional<ProductReference> ref = productReference.stream()

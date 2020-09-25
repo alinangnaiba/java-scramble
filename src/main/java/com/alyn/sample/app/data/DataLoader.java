@@ -46,7 +46,9 @@ public class DataLoader {
         WatchService watchService
                 = FileSystems.getDefault().newWatchService();
         Path path = Paths.get(config.getTransactionDirectory());
-
+        System.out.println("will read from these directories:");
+        System.out.println(config.getTransactionDirectory());
+        System.out.println(config.getReferenceDirectory());
         path.register(
                 watchService,
                 StandardWatchEventKinds.ENTRY_CREATE);
