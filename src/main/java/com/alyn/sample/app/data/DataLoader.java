@@ -4,6 +4,7 @@ import com.alyn.sample.app.AppConfig;
 import com.alyn.sample.app.service.DataLoaderService;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class DataLoader {
         while ((key = watchService.take()) != null) {
             for (WatchEvent<?> event : key.pollEvents()) {
                 this.files.add(event.context().toString());
-                String filePath = config.getTransactionDirectory() + "\\" + event.context().toString();
+                String filePath = config.getTransactionDirectory() + File.separator + event.context().toString();
                 Thread.sleep(10);
                 List<Transaction> newTransactions = loaderService.loadTransactions(filePath);
                 dataStore.addTransactions(newTransactions);
