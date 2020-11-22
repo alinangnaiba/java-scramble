@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AssignmentController {
+public class TransactionController {
 
     @Autowired
     private TransactionService service;
@@ -21,7 +21,7 @@ public class AssignmentController {
         return "Hello";
     }
 
-    @RequestMapping("/assignment/transaction/{id}")
+    @RequestMapping("/transaction/transaction/{id}")
     public ResponseEntity<TransactionResponse> transaction(@PathVariable int id) {
         TransactionResponse response = service.getTransactionById(id);
         if (response.getTransactionId() == 0) {
@@ -30,7 +30,7 @@ public class AssignmentController {
         return ResponseEntity.ok(response);
     }
 
-    @RequestMapping("/assignment/transactionSummaryByProducts/{lastNDays}")
+    @RequestMapping("/transaction/transactionSummaryByProducts/{lastNDays}")
     public ResponseEntity<SummaryResponse> transactionSummaryByProducts(@PathVariable int lastNDays) {
         SummaryResponse response = service.getTransactionSummaryByProducts(lastNDays);
         if (response.getSummary() == null){
@@ -39,7 +39,7 @@ public class AssignmentController {
         return ResponseEntity.ok(response);
     }
 
-    @RequestMapping("/assignment/transactionSummaryByManufacturingCity/{lastNDays}")
+    @RequestMapping("/transaction/transactionSummaryByManufacturingCity/{lastNDays}")
     public ResponseEntity<SummaryResponse> transactionSummaryByManufacturingCity(@PathVariable int lastNDays) {
         SummaryResponse response = service.transactionSummaryByManufacturingCity(lastNDays);
         if (response.getSummary() == null){
